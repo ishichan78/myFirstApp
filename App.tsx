@@ -1,8 +1,12 @@
 import React from "react";
-import MemoListScreen from "./src/screens/MemoListScreen";
+// import MemoListScreen from "./src/screens/MemoListScreen";
 // import MemoDetailScreen from "./src/screens/MemoDetailScreen";
+// import MemoEditSAcreen from "./src/screens/MemoEditScreen";
+import MemoCreateScreen from "./src/screens/MemoCreateScreen";
 
 export default function App() {
   // return <MemoDetailScreen />;
-  return <MemoListScreen />;
+  // return <MemoListScreen />;
+  // return <MemoEditScreen />;
+  return <MemoCreateScreen />;
 }
