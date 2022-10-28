@@ -4730,7 +4730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-font@npm:~10.2.1":
+"expo-font@npm:^10.2.1, expo-font@npm:~10.2.1":
   version: 10.2.1
   resolution: "expo-font@npm:10.2.1"
   dependencies:
@@ -7435,6 +7435,7 @@ __metadata:
     eslint-plugin-promise: ^6.1.1
     eslint-plugin-react: ^7.31.10
     expo: ~46.0.16
+    expo-font: ^10.2.1
     expo-status-bar: ~1.4.0
     react: 18.0.0
     react-dom: 18.0.0

@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { View, StyleSheet } from "react-native";
+
+import Icon from "./Icon";
 
 interface Props {
   style?: any;
@@ -11,7 +12,7 @@ export default function CircleButton(props: Props) {
   const { style, name } = props;
   return (
     <View style={[styles.circleButton, style]}>
-      <Feather name={name} size={32} color="white" />
+      <Icon name={name} size={40} color="white" />
     </View>
   );
 }
