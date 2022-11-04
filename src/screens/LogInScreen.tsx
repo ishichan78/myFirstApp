@@ -5,13 +5,30 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
+import firebase from "firebase";
 import Button from "../components/Button";
 
 export default function LogInScreen(props: any) {
   const { navigation } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const handlePress = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        console.log(userCredential.user?.uid);
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "MemoList" }],
+        });
+      })
+      .catch((error) => {
+        Alert.alert(error.code);
+      });
+  };
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
@@ -35,24 +52,18 @@ export default function LogInScreen(props: any) {
           }}
           autoCapitalize="none"
           placeholder="Password"
-          secureTextEntry
+          secureTextEntry={true}
         />
-        <Button
-          label="Submit"
-          onPress={() => {
-            props.navigation.reset({
-              index: 0,
-              routes: [{ name: "MemoList" }],
-            });
-          }}
-        />
+        <Button label="Submit" onPress={handlePress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registerd?</Text>
           <TouchableOpacity
-            onPress={navigation.reset({
-              index: 0,
-              routes: [{ name: "SignUp" }],
-            })}
+            onPress={() =>
+              navigation.reset({
+                index: 0,
+                routes: [{ name: "SignUp" }],
+              })
+            }
           >
             <Text style={styles.footerLink}>Sign up here!</Text>
           </TouchableOpacity>
