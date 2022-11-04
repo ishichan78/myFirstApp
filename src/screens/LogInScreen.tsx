@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,6 +14,23 @@ export default function LogInScreen(props: any) {
   const { navigation } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    // useEffect:propsの変更等画面が更新されるたびにcallback関数が実行される.
+    // useEffectの第2引数を使用することで更新を監視する対象を指定できる.
+    // 空の配列を指定することでコンポーネントがマウントされたときのみ実行となる.
+    // アンマウント時にreturnの関数が実行される.
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "MemoList" }],
+        });
+      }
+    });
+    return unsubscribe;
+  }, []);
+
   const handlePress = () => {
     firebase
       .auth()
